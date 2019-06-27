@@ -1,10 +1,19 @@
 .container{
   position: absolute;
-  width: 50vw; 
-  height: 40vh; 
+  width: 80vw; 
+  height: 60vh; 
   border-radius: 15px;
   left: 50%;
   transform: translate(-50%);
-  top: 25vh;
+  top: 22vh;
   box-shadow: 5px 5px 20px 5px #888888;
+}
+
+.row
+{
+  padding: 40px;
+}
+.days{
+  display:flex;
+  justify-content: space-evenly;
 }

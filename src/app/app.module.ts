@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { WeatherMainViewComponent } from './weather-main-view/weather-main-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DayWeatherComponent } from './weather-main-view/day-weather/day-weather.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     AppComponent,
     HeaderComponent,
     WeatherMainViewComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    DayWeatherComponent
   ],
   imports: [
     BrowserModule,

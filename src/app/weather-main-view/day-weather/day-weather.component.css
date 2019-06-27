@@ -1,0 +1,16 @@
+.container{
+    background-image: url("https://weather.walla.co.il/images/weather/big-images/colors/1220.png");
+    background-size: 100%;
+    background-repeat: no-repeat; 
+    width:150px;
+    height: 150px;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.day_weather{
+    display: flex;
+    justify-content: space-evenly;
+}
