@@ -9,8 +9,13 @@ import { WeatherDataService } from '../weather-data.service';
 export class WeatherMainViewComponent implements OnInit {
 
   constructor(private weatherService: WeatherDataService) { }
-Days = [1,2,3,4,5];
+
   ngOnInit() {
+
+  }
+
+  OnLocationSelect(location: string){
+    this.weatherService.getWeatherData(location);
   }
 
 }

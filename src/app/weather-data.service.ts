@@ -12,13 +12,14 @@ export class WeatherDataService {
   constructor(private http: HttpClient) { }
   currentLocation: string;
 
-  // getWeatherData(cityName: string) {
-  //   return this.http.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&q=${this.location}`).subscribe(
-  //     (response: JSON) => {
-  //      this.data = response; 
-  //      console.log(this.data); 
-  //     },
-  //      (error) => console.log(error)
-  //   );
-  // }
+  getWeatherData(location: string) {
+    return this.http.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&q=${location}`).subscribe(
+      (response: JSON) => {
+       this.data = response; 
+       console.log(this.data); 
+      },
+       (error) => console.log(error)
+    );
+  }
 }
+// `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`
