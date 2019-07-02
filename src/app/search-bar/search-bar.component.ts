@@ -11,7 +11,7 @@ export class SearchBarComponent implements OnInit {
   constructor(private locationService: LocationService) { }
 
   ngOnInit() {
-    this.locationService.GetLocation();
+    this.locationService.GetLocation("");
   }
 
 }
