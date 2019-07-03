@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <p class="search_lable">Search</p>
-    <input class="search_input" type="text">
+    <input class="search_input" [(ngModel)]="data" (ngModelChange)="onChange()" type="text">
+    <div class="search_oprions">
+      <span>gfgh</span>
+    </div>
   </div>
 </div>

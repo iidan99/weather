@@ -1,8 +1,8 @@
 export class WeatherLocation{
-    constructor(public city: string, public key: string, public country: string)
+    constructor(public LocalizedName: string, public Key: string, public Country: string)
     {
-        this.city = city;
-        this.key = key;
-        this.country = country;
+        this.LocalizedName = LocalizedName;
+        this.Key = Key;
+        this.Country[LocalizedName] = Country[LocalizedName];
     }
 }
