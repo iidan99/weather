@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
-    <p class="search_lable">Search</p>
+    <!-- <p class="search_lable">Search</p> -->
     <input class="search_input" [(ngModel)]="data" (ngModelChange)="onChange()" type="text">
-    <div class="search_oprions">
-      <span>gfgh</span>
+    <div class="search_options">
+     <ul class="ul_style">
+       <li *ngFor="let location of loc; let i = index" (click)="OnSelect(location)" class="li_location">{{ loc[i].LocalizedName }} , {{ loc[i].Country.ID }}</li>
+     </ul>
     </div>
   </div>
 </div>

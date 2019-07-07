@@ -12,8 +12,8 @@ export class WeatherDataService {
   constructor(private http: HttpClient) { }
   currentLocation: string;
 
-  getWeatherData(location: string) {
-    return this.http.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&q=${location}`).subscribe(
+  getWeatherData(city_key: string) {
+    return this.http.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`).subscribe(
       (response: JSON) => {
        this.data = response; 
        console.log(this.data); 
