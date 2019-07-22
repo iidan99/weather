@@ -15,8 +15,8 @@ export class WeatherDataService {
   getWeatherData(city_key: string) {
     return this.http.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`).subscribe(
       (response: JSON) => {
-       this.data = response; 
-       console.log(this.data); 
+       this.data = response;
+      //  console.log(this.data);
       },
        (error) => console.log(error)
     );
