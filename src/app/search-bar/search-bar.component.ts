@@ -13,10 +13,11 @@ import { Observable, Observer, Subscription, Subject, BehaviorSubject, empty } f
 })
 export class SearchBarComponent implements OnInit {
   data: string;
-  loc: WeatherLocation[] = [];
+  location: WeatherLocation[] = [];
   localData: Subscription;
   dispose$: Subject<void> = new Subject();
   inputVal: BehaviorSubject<string> = new BehaviorSubject('');
+  keyVlue: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private locationService: LocationService, private Weater: WeatherDataService) { }
 
@@ -29,17 +30,32 @@ export class SearchBarComponent implements OnInit {
         switchMap(searchTerm => this.locationService.GetLocation(searchTerm))
       )
       .subscribe();
+
+
+      
+      // this.keyVlue.pipe(
+      //   takeUntil(this.dispose$),)
+      //   switchMap(key => this.Weater.getWeatherData(key))
+      // ).subscribe();
   }
 
   updateSubjectValue(val: string): void {
     this.inputVal.next(val);
     setTimeout(() => {
-      this.loc = this.locationService.data;
+      this.location = this.locationService.data;
     }, 500);
  }
 
   OnSelect(element) {
-    this.Weater.getWeatherData(element.Key);
+    this.keyVlue
+      .pipe(
+        takeUntil(this.dispose$),
+        debounceTime(300),
+        switchMap(searchTerm => this.Weater.getWeatherData(element.Key))
+      )
+      .subscribe();
+    this.keyVlue.next(element.key)
+    // this.Weater.getWeatherData();
   }
 
   ngOnDestroy() {

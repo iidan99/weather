@@ -1,25 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, interval } from 'rxjs';
+import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { getLocaleDateTimeFormat } from '@angular/common';
+import { map } from 'rxjs/operators';
+import { WeatherDay } from './resurces/weather.perday.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherDataService {
   location: string;
-  data: JSON;
+  data: WeatherDay[] = [];
   constructor(private http: HttpClient) { }
   currentLocation: string;
+  weatherData: BehaviorSubject<WeatherDay[]> = new BehaviorSubject<WeatherDay[]>(this.data);
+  
+  getWeatherData(city_key: string): Observable<any> {
+    return this.http.get<WeatherDay[]>(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
+    .pipe(map((response) => response.map(test => 
+      {
+        const {Date, Day, TemperatireUnit, TemperatireValue} = test;
+        const weekInfo: WeatherDay = {
+        Date,
+        Day,
+        TemperatireUnit,
+        TemperatireValue  
+        };
 
-  getWeatherData(city_key: string) {
-    return this.http.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`).subscribe(
-      (response: JSON) => {
-       this.data = response;
-      //  console.log(this.data);
-      },
-       (error) => console.log(error)
-    );
+        //  console.log(this.data);
+        this.data.push(weekInfo);
+        console.log(weekInfo);
+
+      return weekInfo;
+      })
+      ));
   }
 }
 // `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`

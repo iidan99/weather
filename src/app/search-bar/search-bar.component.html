@@ -4,7 +4,7 @@
     <input class="search_input" [(ngModel)]="data" (ngModelChange)="updateSubjectValue($event)" type="text">
     <div class="search_options">
      <ul class="ul_style">
-       <li *ngFor="let location of loc; let i = index" (click)="OnSelect(location)" class="li_location">{{ loc[i].LocalizedName }}</li>
+       <li *ngFor="let loc of location; let i = index" (click)="OnSelect(loc)" class="li_location">{{ location[i].LocalizedName }}, {{ location[i].Country.LocalizedName }}</li>
      </ul>
     </div>
   </div>

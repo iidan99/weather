@@ -27,7 +27,7 @@ GetLocation(location: string): Observable<any> {
           LocalizedName
         };
         this.data.push(weatherData);
-        console.log(this.data);
+        // console.log(this.data);
         return weatherData;
       })
     )
