@@ -17,7 +17,8 @@ export class WeatherDataService {
   
   getWeatherData(city_key: string): Observable<any> {
     return this.http.get<WeatherDay[]>(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
-    .pipe(map((response) => response.map(test => 
+    .pipe(map((response) =>
+     response['DailyForecasts'].map(test => 
       {
         const {Date, Day, TemperatireUnit, TemperatireValue} = test;
         const weekInfo: WeatherDay = {
