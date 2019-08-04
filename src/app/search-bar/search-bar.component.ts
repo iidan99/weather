@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LocationService } from '../location.service';
 import { FormsModule } from '@angular/forms';
 import { WeatherLocation } from '../resurces/weather.location.model';
@@ -18,6 +18,7 @@ export class SearchBarComponent implements OnInit {
   dispose$: Subject<void> = new Subject();
   inputVal: BehaviorSubject<string> = new BehaviorSubject('');
   keyVlue: BehaviorSubject<string> = new BehaviorSubject('');
+  @Output() selectCity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private locationService: LocationService, private Weater: WeatherDataService) { }
 
@@ -55,6 +56,8 @@ export class SearchBarComponent implements OnInit {
       )
       .subscribe();
     this.keyVlue.next(element.key)
+    this.selectCity.emit(true);
+
     // this.Weater.getWeatherData();
   }
 

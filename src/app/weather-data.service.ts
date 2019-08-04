@@ -14,27 +14,26 @@ export class WeatherDataService {
   constructor(private http: HttpClient) { }
   currentLocation: string;
   weatherData: BehaviorSubject<WeatherDay[]> = new BehaviorSubject<WeatherDay[]>(this.data);
-  
+
   getWeatherData(city_key: string): Observable<any> {
+    this.data = [];
     return this.http.get<WeatherDay[]>(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
-    .pipe(map((response) =>
-     response['DailyForecasts'].map(test => 
-      {
-        const {Date, Day, TemperatireUnit, TemperatireValue} = test;
-        const weekInfo: WeatherDay = {
-        Date,
-        Day,
-        TemperatireUnit,
-        TemperatireValue  
-        };
+      .pipe(map((response) =>
+        response['DailyForecasts'].map(test => {
+          const { Date, Day, Temperature } = test;
+          const weekInfo: WeatherDay = {
+            Date,
+            Day,
+            Temperature
+          };
 
-        //  console.log(this.data);
-        this.data.push(weekInfo);
-        console.log(weekInfo);
+          //  console.log(this.data);
+          this.data.push(weekInfo);
+          // console.log(this.data);
 
-      return weekInfo;
-      })
-      ));
-  }
-}
+          return weekInfo;
+        })
+        ));
+      }
+    }
 // `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`

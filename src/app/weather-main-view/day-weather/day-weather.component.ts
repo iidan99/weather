@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { WeatherDataService } from 'src/app/weather-data.service';
+import { WeatherDay } from 'src/app/resurces/weather.perday.model';
 
 @Component({
   selector: 'app-day-weather',
@@ -6,11 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./day-weather.component.css']
 })
 export class DayWeatherComponent implements OnInit {
-  @Input() dayWeather;
-  constructor() { }
-  Days = [1,2,3,4,5];
+  dayWeather: WeatherDay[] = [];
+  
+  constructor(private weatherSrevice: WeatherDataService) { }
+  
   ngOnInit() {
-
+    setTimeout(() => {
+      this.dayWeather = this.weatherSrevice.data;
+      console.log(this.dayWeather[0].Date);
+      console.log(this.dayWeather);
+    }, 1000);
   }
 
 }
