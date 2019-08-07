@@ -19,21 +19,21 @@ export class WeatherDataService {
 
   getWeatherData(city_key: string): Observable<any> {
     this.data = [];
-    // return this.http.get<WeatherDay[]>
-    // (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
-    //   .pipe(map((response) =>
-    //     response['DailyForecasts'].map(test => {
-    //       const weekInfo: WeatherDay = {
-    //         Date: this.daysName[new Date(test.Date).getDay()],
-    //         TemperatureType: test.Temperature.Maximum.Unit,
-    //         TemperatureValue: test.Temperature.Maximum.Value,
-    //         Day: test.Day
-    //        };
-    //       this.data.push(weekInfo);
-    //       console.log(this.data);
+    return this.http.get<WeatherDay[]>
+    (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
+      .pipe(map((response) =>
+        response['DailyForecasts'].map(test => {
+          const weekInfo: WeatherDay = {
+            Date: this.daysName[new Date(test.Date).getDay()],
+            TemperatureType: test.Temperature.Maximum.Unit,
+            TemperatureValue: test.Temperature.Maximum.Value,
+            Day: test.Day
+           };
+          this.data.push(weekInfo);
+          console.log(this.data);
 
-    //       return weekInfo;
-    //     })
-    //   ));
+          return weekInfo;
+        })
+      ));
   }
 }
