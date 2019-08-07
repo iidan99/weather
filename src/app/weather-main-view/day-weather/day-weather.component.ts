@@ -9,15 +9,13 @@ import { WeatherDay } from 'src/app/resurces/weather.perday.model';
 })
 export class DayWeatherComponent implements OnInit {
   dayWeather: WeatherDay[] = [];
-  
-  constructor(private weatherSrevice: WeatherDataService) { }
-  
+
+  constructor(private weatherService: WeatherDataService) { }
+
   ngOnInit() {
     setTimeout(() => {
-      this.dayWeather = this.weatherSrevice.data;
-      console.log(this.dayWeather[0].Date);
-      console.log(this.dayWeather);
-    }, 1000);
+      this.dayWeather = this.weatherService.data;
+    }, 300);
   }
 
 }

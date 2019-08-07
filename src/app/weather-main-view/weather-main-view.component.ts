@@ -9,9 +9,8 @@ import { WeatherDay } from '../resurces/weather.perday.model';
 })
 export class WeatherMainViewComponent implements OnInit {
   weatherData: [{}];
-  citySelect: boolean = false;
-  dayNumber:number;
-  daysName: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  citySelect = false;
+  dayNumber: number;
   days: number[] = [];
   constructor(private weatherService: WeatherDataService) { }
 

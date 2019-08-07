@@ -14,26 +14,26 @@ export class WeatherDataService {
   constructor(private http: HttpClient) { }
   currentLocation: string;
   weatherData: BehaviorSubject<WeatherDay[]> = new BehaviorSubject<WeatherDay[]>(this.data);
+  daysName: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 
   getWeatherData(city_key: string): Observable<any> {
     this.data = [];
-    return this.http.get<WeatherDay[]>(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
-      .pipe(map((response) =>
-        response['DailyForecasts'].map(test => {
-          const { Date, Day, Temperature } = test;
-          const weekInfo: WeatherDay = {
-            Date,
-            Day,
-            Temperature
-          };
+    // return this.http.get<WeatherDay[]>
+    // (`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`)
+    //   .pipe(map((response) =>
+    //     response['DailyForecasts'].map(test => {
+    //       const weekInfo: WeatherDay = {
+    //         Date: this.daysName[new Date(test.Date).getDay()],
+    //         TemperatureType: test.Temperature.Maximum.Unit,
+    //         TemperatureValue: test.Temperature.Maximum.Value,
+    //         Day: test.Day
+    //        };
+    //       this.data.push(weekInfo);
+    //       console.log(this.data);
 
-          //  console.log(this.data);
-          this.data.push(weekInfo);
-          // console.log(this.data);
-
-          return weekInfo;
-        })
-        ));
-      }
-    }
-// `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${city_key}?apikey=hqqt9CBN6GZG01X5ecACK5CfQXMp4r9B&metric=true`
+    //       return weekInfo;
+    //     })
+    //   ));
+  }
+}

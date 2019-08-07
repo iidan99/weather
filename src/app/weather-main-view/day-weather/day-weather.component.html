@@ -1,10 +1,14 @@
 <div class="container">
   <div *ngFor="let days of dayWeather" class="row">
     <div class="days">
-      <p>day {{ dayWeather[days] }}</p>
+      <p>day</p>
+      <p> {{ days.Date }}</p>
     </div>
     <div class="img">
       <img class="weather_img" src="https://weather.walla.co.il/images/weather/big-images/colors/1220.png" alt="">
+    </div>
+    <div>
+      <p> {{ days.TemperatureValue }} {{ days.TemperatureType }} </p>
     </div>
   </div>
 </div>
